@@ -8,7 +8,6 @@ bin/
 obj/
 
 # Paramètres spécifiques à l'environnement de développement
-appsettings.Development.json
 
 # Fichiers journaux
 *.log
