@@ -1,0 +1,15 @@
+# Fichiers et dossiers générés par Visual Studio
+.vs/
+*.csproj.user
+*.suo
+
+# Fichiers binaires et objets
+bin/
+obj/
+
+# Paramètres spécifiques à l'environnement de développement
+appsettings.Development.json
+
+# Fichiers journaux
+*.log
+wwwroot
