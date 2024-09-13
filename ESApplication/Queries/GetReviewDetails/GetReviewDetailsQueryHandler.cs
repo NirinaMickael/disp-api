@@ -33,14 +33,24 @@ namespace ESApplication.Queries.GetReviewDetails
                             command.Transaction = tr;
                             command.Parameters.Add("@businessid", SqlDbType.BigInt).Value = request.businessid;
                             command.Parameters.Add("@isactive", SqlDbType.Int).Value = request.isactive;
-                            command.Parameters.Add("@isquiz", SqlDbType.Int).Value = request.isquiz;
+                            //command.Parameters.Add("@isquiz", SqlDbType.Int).Value = request.isquiz;
+
+
                             DataTable dt = new DataTable();
 
                             using (SqlDataAdapter dataAdapter = new SqlDataAdapter(command))
                             {
+                                Console.WriteLine($"With dataAdapter Parameters: {dataAdapter} ");
+
                                 dataAdapter.SelectCommand = command;
+
+                                Console.WriteLine($"With dataAdapter Parameters: {dataAdapter.SelectCommand} ");
                                 dataAdapter.Fill(dt);
+
+
                             }
+                            
+                            Console.WriteLine($"With DT Parameters: {dt.Rows} ");
 
                             foreach (DataRow row in dt.Rows)
                             {
@@ -52,8 +62,9 @@ namespace ESApplication.Queries.GetReviewDetails
                     }
                     catch (Exception ex)
                     {
-                        tr.Rollback();
-                        return response;
+                            Console.WriteLine($"Erreur lors de l'exécution de la procédure : {ex.Message}");
+                            tr.Rollback();
+                            return response;
                     }
                 }
             }
@@ -71,8 +82,8 @@ namespace ESApplication.Queries.GetReviewDetails
                 createdon = Convert.ToDateTime(row["createdon"]),
                 isactive = Convert.ToInt16(row["isactive"]),
                 businessid = Convert.ToInt64(row["businessid"]),
-                isquiz = Convert.ToInt16(row["isquiz"]),
-                title =  row["title"].ToString()
+                // isquiz = Convert.ToInt16(row["isquiz"]),
+                //title =  row["title"].ToString()
             };
             return parentsDetail;
         }
