@@ -172,7 +172,7 @@ namespace ESAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateUserDetails(CreateUserDetailsCommand request)
+        public async Task<IActionResult> CreateUserDetails([FromBody] CreateUserDetailsCommand request)
         {
             var reportTypeResponse = await _mediator.Send(request);
             return Ok(reportTypeResponse);
